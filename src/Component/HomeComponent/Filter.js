@@ -9,7 +9,7 @@ const Filter = () => {
     const [bugs, setBugs] = useState([])
     //Fetching Product.............................................
         useEffect(() => {
-            fetch(`http://localhost:5000/bugs/status/${status}`)
+            fetch(`https://ancient-plateau-89548.herokuapp.com/bugs/status/${status}`)
                 .then(res => res.json())
                 .then(data => setBugs(data))
         }, [status])

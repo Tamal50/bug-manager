@@ -11,7 +11,7 @@ const BugComponent = (data) => {
     }
     const handleSubmit = (e) => {
         setStatus(e.target.value) 
-        fetch(`http://localhost:5000/update/${data.data._id}`, {
+        fetch(`https://ancient-plateau-89548.herokuapp.com/update/${data.data._id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(datass)

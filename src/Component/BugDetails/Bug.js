@@ -13,7 +13,7 @@ const Bug = () => {
 
   const [bug, setbug] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/bug/${id}`)
+    fetch(`https://ancient-plateau-89548.herokuapp.com/bug/${id}`)
       .then((res) => res.json())
       .then((data) => setbug(data));
   }, []);
@@ -69,7 +69,7 @@ const Bug = () => {
   // Posting to databases
 
   const handleSubmit = (e) => {
-    const url = `http://localhost:5000/addcomment`;
+    const url = `https://ancient-plateau-89548.herokuapp.com/addcomment`;
     fetch(url, {
       method: "POST",
       headers: {
@@ -92,29 +92,31 @@ const Bug = () => {
 
   const [CommentData, setCommentData] = useState([{}]);
   useEffect(() => {
-    fetch(`http://localhost:5000/comments`)
+    fetch(`https://ancient-plateau-89548.herokuapp.com/comments`)
       .then((res) => res.json())
       .then((data) => setCommentData(data));
   }, []);
   console.log("CommentData CommentData", CommentData);
 
+  
+
   return (
     <div>
       <Navbar />
-      <h1>{bug.vote}</h1>
-      <h1>{bug?.title} ?</h1>
-      <h1>{bug?.description} ?</h1>
-      <h1>{bug?.Email} ?</h1>
-      <h1>{bug?.status} ?</h1>
-      <h1>{bug?.status} ?</h1>
-      <h1>{bug?.date} ?</h1>
-      <img className="w-1/3 h-1/3" src={bug?.image}></img>
+      <h1 className="text-3xl my-4 mx-4">Bug Report by : {bug?.Email}</h1>
+      <div className="flex flex-row"><h1 className="border-4 py-4 w-12 px-4">{bug.vote}</h1>
+      <div className="flex flex-col pl-4"><h1>{bug?.title} </h1>
+      <h1>{bug?.description}</h1></div></div>
+      <h1>{bug?.date} </h1>
+      {bug.image && <img className="w-1/3 h-1/3" src={bug?.image}></img>}
+      
 
-      <h1>Start commenting and Update</h1>
+      <h1 className="text-xl my-4 mx-4 font-bold">Start commenting and Update</h1>
       <input
         onBlur={handleOnChange}
         name="comment"
-        className="m-2 p-4"
+        className="m-2 p-4 border-4 border-black"
+        placeholder="comment"
         type="text"
       ></input>
       {imageURL && <img src={imageURL} className="w-1/3 h-1/3"></img>}
@@ -125,11 +127,15 @@ const Bug = () => {
         onChange={handleImageUpload}
         type="file"
       ></input>
-      <button onClick={handleSubmit}  className="">
+      <button onClick={handleSubmit}  className=" bg-gray-300 p-4">
         Submit Comment
       </button>
+
+      <h1 className="text-md my-4 mx-4 font-bold">Start commenting and Update</h1>
+
       {CommentData.map((item) => (
-        <Comments Data={item} />
+        
+        <Comments Data={item} bugid ={bug._id} />
       ))}
     </div>
   );

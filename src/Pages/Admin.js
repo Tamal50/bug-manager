@@ -8,7 +8,7 @@ const Admin = () => {
 
   const [bugs, setbugs] = useState([{}]);
   useEffect(() => {
-    fetch(`http://localhost:5000/bugs`)
+    fetch(`https://ancient-plateau-89548.herokuapp.com/bugs`)
       .then((res) => res.json())
       .then((data) => setbugs(data));
   }, []);

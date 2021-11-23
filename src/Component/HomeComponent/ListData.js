@@ -5,13 +5,13 @@ const ListData = () => {
     const [bugs, setBugs] = useState([])
     //Fetching Product.............................................
     useEffect(() => {
-        fetch(`http://localhost:5000/bugs`)
+        fetch(`https://ancient-plateau-89548.herokuapp.com/bugs`)
             .then(res => res.json())
             .then(data => setBugs(data))
     }, [])
     console.log("data data" , bugs)
     return (
-        <div className="h-40 w-3/4">
+        <div className="h-40 w-4/4">
             <div className="flex flex-row bg-red-500">
                 <p className="mx-auto font-bold text-black">Under Review</p>
                 <p className="mx-auto font-bold text-yellow-400">Planned</p>

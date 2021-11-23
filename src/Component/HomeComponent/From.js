@@ -44,7 +44,7 @@ const Data = {
   const handleSubmit = e => {
     
 
-    const url = `http://localhost:5000/addbug`;
+    const url = `https://ancient-plateau-89548.herokuapp.com/addbug`;
     fetch(url, {
         method: 'POST',
         headers: {
@@ -55,7 +55,7 @@ const Data = {
         .then(res => res.json())
         .then(data => {
             if (data) {
-                alert('Product added successfully.')
+                alert('Bug added successfully.')
                 // e.target.reset();
             }
         })
