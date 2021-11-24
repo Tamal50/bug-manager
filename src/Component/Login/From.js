@@ -66,7 +66,7 @@ const [login, setLogin ] = useState(false)
         if (error.message ==="Assignment to constant variable."){
           storeAuthToken();
           setLogInUser(user);
-          alert("login successfully")
+          // alert("login successfully")
           history.replace(from);
           return error.message
         }
@@ -205,14 +205,14 @@ const handleSignUp = (e) => {
                 Sign up
               </Button>
             </div>
-            <Button
+            {/* <Button
                 fullWidth
                 variant="contained"
                 sx={{ mt: 2, mb: 1 }}
                 // onClick={(e)=>handleGoogleLogin(e)}
               >
                 Google Sign in
-              </Button>
+              </Button> */}
           </Box>
         </Box>
       </Container>

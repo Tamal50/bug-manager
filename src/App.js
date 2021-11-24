@@ -8,6 +8,7 @@ import firebase from 'firebase'
 import { useEffect } from 'react';
 import Bug from './Component/BugDetails/Bug';
 import Admin from './Pages/Admin';
+import PrivateRoute from './Component/Login/PrivateRoute';
 
 
 export const UserContext = createContext(null)
@@ -54,12 +55,12 @@ function App() {
           <Route exact path="/login">
             <Login></Login>
           </Route> 
-          <Route exact path="/bug/:id">
+          <PrivateRoute exact path="/bug/:id">
             <Bug></Bug>
-          </Route>
-          <Route exact path="/dashboard">
+          </PrivateRoute>
+          <PrivateRoute exact path="/dashboard">
             <Admin></Admin>
-          </Route>       
+          </PrivateRoute>       
       </Router>
     </UserContext.Provider>
   );

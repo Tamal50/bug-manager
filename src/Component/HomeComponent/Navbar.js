@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
+import firebase from 'firebase';
+
 
 const Navbar = () => {
     const [logInUser, setLogInUser] = useContext(UserContext);
@@ -19,6 +21,10 @@ const Navbar = () => {
     })
     console.log("CommentData CommentData", isAdmin);
 
+    const handleLogOut = () => {
+        firebase.auth().signOut()
+        sessionStorage.removeItem('token')
+      }
     return (
         <div className="bg-red-900 h-40 w-full">
             
@@ -28,7 +34,7 @@ const Navbar = () => {
                     isAdmin && <Link  className="mx-auto text-white "to="/dashboard"> <p>Admin Panel</p></ Link>
                 }
                 {
-                    logInUser ? <Link className="mx-auto text-white" to="/login"> <p>LogOut</p></ Link> :  <div><Link to="/login"> <p className="mx-auto text-white">Login</p></ Link>
+                    logInUser ? <Link onClick={handleLogOut} className="mx-auto text-white" to="/login"> <p>LogOut</p></ Link> :  <div><Link to="/login"> <p className="mx-auto text-white">Login</p></ Link>
                     <p className="mx-auto text-white">Signup</p></div>
                 }
             </div>

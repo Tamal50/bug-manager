@@ -104,10 +104,10 @@ const Bug = () => {
     <div>
       <Navbar />
       <h1 className="text-3xl my-4 mx-4">Bug Report by : {bug?.Email}</h1>
-      <div className="flex flex-row"><h1 className="border-4 py-4 w-12 px-4">{bug.vote}</h1>
+      <div className="flex flex-row ml-4"><h1 className="border-4 py-4 w-12 px-4">{bug.vote}</h1>
       <div className="flex flex-col pl-4"><h1>{bug?.title} </h1>
       <h1>{bug?.description}</h1></div></div>
-      <h1>{bug?.date} </h1>
+      <h1><span className="font-bold">Bug Report Date : </span>{(new Date(bug.date).toLocaleDateString())} </h1>
       {bug.image && <img className="w-1/3 h-1/3" src={bug?.image}></img>}
       
 
@@ -115,8 +115,8 @@ const Bug = () => {
       <input
         onBlur={handleOnChange}
         name="comment"
-        className="m-2 p-4 border-4 border-black"
-        placeholder="comment"
+        className="m-2 p-4 border-2 border-black"
+        placeholder="Leave a comment"
         type="text"
       ></input>
       {imageURL && <img src={imageURL} className="w-1/3 h-1/3"></img>}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Bugui from './Bugui';
 
 const Filter = () => {
-    const [status, setStatus] = useState("")
+    const [status, setStatus] = useState("UnderReview")
     console.log("setStatussetStatus" , status)
 
     // geting data from

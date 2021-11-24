@@ -92,7 +92,7 @@ console.log("data data" , Data)
           name="image"
           placeholder="image"
           onChange={handleImageUpload}
-          className="w-12 h-12"
+          className="w-28 mr-3 h-12"
         ></input>
         <button onClick={handleSubmit} className="w-32 bg-red-400 p-2 rounded-lg">Report buug</button>
       </div>
