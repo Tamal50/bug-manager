@@ -34,10 +34,15 @@ const From = () => {
     
 });
 
-const voteeer = {
-  email: "",
-  isVoter: false,
- } 
+const voteeer = [
+  {
+  email: "false",
+  isVoter: false
+  },{
+  email: "true",
+  isVoter: true
+  }
+  ]
 const Data = {
   bug: bug,
   image : imageURL,

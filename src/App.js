@@ -55,9 +55,9 @@ function App() {
           <Route exact path="/login">
             <Login></Login>
           </Route> 
-          <PrivateRoute exact path="/bug/:id">
+          <Route exact path="/bug/:id">
             <Bug></Bug>
-          </PrivateRoute>
+          </Route>
           <PrivateRoute exact path="/dashboard">
             <Admin></Admin>
           </PrivateRoute>       

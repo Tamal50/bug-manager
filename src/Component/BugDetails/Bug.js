@@ -4,20 +4,22 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../../App";
 import Navbar from "../HomeComponent/Navbar";
 import Comments from "./Comments";
+import Voterlist from "./Voterlist";
 
 const Bug = () => {
   const { id } = useParams();
   const [logInUser, setLogInUser] = useContext(UserContext);
 
   // facings data
+  const [bugsss, setbugsss] = useState([]);
+  const [voters , setvoter] = useState([]);
 
-  const [bug, setbug] = useState([]);
   useEffect(() => {
     fetch(`https://ancient-plateau-89548.herokuapp.com/bug/${id}`)
       .then((res) => res.json())
-      .then((data) => setbug(data));
-  }, []);
-  console.log("console", id);
+      .then((data) => setbugsss(data));      
+  },[]);
+  console.log("console", bugsss);
 
   // Image load
 
@@ -42,13 +44,13 @@ const Bug = () => {
 
   // state
 
-  const [data, setdata] = useState({
+  const [data2, setdata] = useState({
     comment: "",
   });
 
   const handleOnChange = (e) => {
     const dataInfo = {
-      ...data,
+      ...data2,
     };
     dataInfo[e.target.name] = e.target.value;
 
@@ -56,14 +58,12 @@ const Bug = () => {
   };
 
   //Post Data
-  const voteeer = { } 
   const Data = {
-    bug: bug,
+    bug: bugsss,
     image: imageURL,
     Email: logInUser.email,
-    comment: data,
+    comment: data2,
     date: new Date(),
-    voter: voteeer
   };
   console.log("check-----Data", Data);
 
@@ -97,24 +97,23 @@ const Bug = () => {
       .then((res) => res.json())
       .then((data) => setCommentData(data));
   }, []);
-  console.log("CommentData CommentData", CommentData);
+  console.log("CommentData CommentData 4", voters);
 
   
 
   return (
     <div>
       <Navbar />
-      {
-        bug.voter.length ? bug.voter.map((item) => (
-          <h1>hello</h1>
-        )) : ""
-      }
-      <h1 className="text-3xl my-4 mx-4">Bug Report by : {bug?.Email}</h1>
-      <div className="flex flex-row ml-4"><h1 className="border-4 py-4 w-12 px-4">{bug.vote}</h1>
-      <div className="flex flex-col pl-4"><h1>{bug?.title} </h1>
-      <h1>{bug?.description}</h1></div></div>
-      <h1><span className="font-bold">Bug Report Date : </span>{(new Date(bug.date).toLocaleDateString())} </h1>
-      {bug.image && <img className="w-1/3 h-1/3" src={bug?.image}></img>}
+       
+      <Voterlist Data={bugsss} />
+      
+          
+      <h1 className="text-3xl my-4 mx-4">Bug Report by : {bugsss?.Email}</h1>
+      <div className="flex flex-row ml-4"><h1 className="border-4 py-4 w-12 px-4">{bugsss.voter?.length}</h1>
+      <div className="flex flex-col pl-4"><h1>{bugsss?.title} </h1>
+      <h1>{bugsss?.description}</h1></div></div>
+      <h1><span className="font-bold">Bug Report Date : </span>{(new Date(bugsss.date).toLocaleDateString())} </h1>
+      {bugsss.image && <img className="w-1/3 h-1/3" src={bugsss?.image}></img>}
       
 
       <h1 className="text-xl my-4 mx-4 font-bold">Start commenting and Update</h1>
@@ -138,10 +137,10 @@ const Bug = () => {
       </button>
 
       <h1 className="text-md my-4 mx-4 font-bold">Start commenting and Update</h1>
-
+     
       {CommentData.map((item) => (
         
-        <Comments Data={item} bugid ={bug._id} />
+        <Comments Data={item} bugid ={bugsss._id} />
       ))}
     </div>
   );
