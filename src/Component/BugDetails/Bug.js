@@ -56,13 +56,14 @@ const Bug = () => {
   };
 
   //Post Data
-
+  const voteeer = { } 
   const Data = {
     bug: bug,
     image: imageURL,
     Email: logInUser.email,
     comment: data,
     date: new Date(),
+    voter: voteeer
   };
   console.log("check-----Data", Data);
 
@@ -103,6 +104,11 @@ const Bug = () => {
   return (
     <div>
       <Navbar />
+      {
+        bug.voter.length ? bug.voter.map((item) => (
+          <h1>hello</h1>
+        )) : ""
+      }
       <h1 className="text-3xl my-4 mx-4">Bug Report by : {bug?.Email}</h1>
       <div className="flex flex-row ml-4"><h1 className="border-4 py-4 w-12 px-4">{bug.vote}</h1>
       <div className="flex flex-col pl-4"><h1>{bug?.title} </h1>

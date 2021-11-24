@@ -216,6 +216,8 @@ const handleSignUp = (e) => {
           </Box>
         </Box>
       </Container>
+      <h1>User email & pass = user@user.com</h1>
+      <h1>Admin email & pass = test@test.com</h1>
     </ThemeProvider>
   );
 }

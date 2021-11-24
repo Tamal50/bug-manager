@@ -1,28 +1,37 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
+import { UserContext } from "../../App";
 
 
 const Bugui = (Data) => {
+  const [logInUser, setLogInUser] = useContext(UserContext);
   const item = Data.Data;
-  const [postVote , setPostVote] =useState()
-  console.log("number" , postVote)
-  let voter = false ;
-  const handleOnChange = ()  => {
-      if(voter){
-       const  min = item.vote - 1
-       setPostVote(min);
-      };
-      if(voter === false){
-        const plus = item.vote + 1
-        setPostVote(plus)
-      };
+ 
+  
+  const datass ={
+    email  : logInUser.email,
+    isVoter : true,
   }
+  const handleSubmit = (e) => {
+        
+    fetch(`https://ancient-plateau-89548.herokuapp.com/vote/${item._id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(datass)
+    })
+    .then(res => res.json())
+    .then(result => {
+           alert("vote added")
+    })
+
+    e.preventDefault();
+  };
  
   return (
     <div className="w-full flex flex-row">
-      <div className="mx-2 my-1 w-8 border-2 flex flex-col p-2 text-xl">
-        <p onClick={handleOnChange}>+</p>
-        <p>{item.vote}</p>
+      <div className="mx-2 my-1 w-8 border-2 flex flex-col p-2 text-xl cursor-pointer" onClick={handleSubmit}>
+        <p>+</p>
+        {/* <p>{item.vote.email.length}</p> */}
       </div>
       <div className="w-10/12 flex flex-col gap-2">
       <p className="text-sm font-bold   text-red-500">{item.status === "UnderReview" ? "Under Review": ""} {item.status === "Planned" ? "Planned": ""} {item.status === "InProgress" ? "In Progress": ""}{item.status === "Complete" ? "Complete": ""}</p>

@@ -34,11 +34,16 @@ const From = () => {
     
 });
 
+const voteeer = {
+  email: "",
+  isVoter: false,
+ } 
 const Data = {
   bug: bug,
   image : imageURL,
   Email : logInUser.email ,
-  status : "Pending",
+  status : "UnderReview",
+  voter: voteeer
 }
 
   const handleSubmit = e => {
